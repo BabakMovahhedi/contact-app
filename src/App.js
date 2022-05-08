@@ -1,8 +1,9 @@
 
 import { useEffect, useState } from 'react';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
 import AddContact from './components/AddContact/AddContact';
 import ContactList from './components/ContactList/ContactList';
+import './App.css';
 
 
 function App() {
@@ -36,8 +37,14 @@ useEffect(()=>{
   return (
     <div className="App">
     <h1>contact App</h1>
-    <AddContact AddContactHandler={AddContactHandler} />
-    <ContactList contacts={contacts} onDelete={onDelete} />
+    <Routes>
+
+      <Route path='/add' element={ <AddContact  AddContactHandler={AddContactHandler}  /> } />
+      <Route path='/' element={ <ContactList contacts={contacts} onDelete={onDelete}/>} />
+     
+    </Routes>
+    {/* <AddContact    AddContactHandler={AddContactHandler} /> */}
+    {/* <ContactList contacts={contacts} onDelete={onDelete} /> */}
     </div>
   );
 }
