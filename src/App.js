@@ -1,8 +1,10 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import AddContact from './components/AddContact/AddContact';
 import ContactList from './components/ContactList/ContactList';
+
+
 function App() {
   const[contacts,setContacts]=useState([])
 
@@ -18,6 +20,18 @@ function App() {
   };
   setContacts([...contacts,newContact]);
 };
+
+
+useEffect(()=>{
+  const newContact= JSON.parse(localStorage.getItem("contacts") );
+  if(newContact) setContacts(newContact);
+},[]);
+
+useEffect(()=>{
+  localStorage.setItem("contacts",JSON.stringify(contacts) );
+},[contacts]);
+
+
 
   return (
     <div className="App">
