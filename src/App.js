@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AddContact from './components/AddContact/AddContact';
 import ContactList from './components/ContactList/ContactList';
+
 import './App.css';
+import DetaileUser from './components/DetaileUser/DetaileUser';
 
 
 function App() {
@@ -24,8 +26,9 @@ function App() {
 
 
 useEffect(()=>{
-  const newContact= JSON.parse(localStorage.getItem("contacts") );
-  if(newContact) setContacts(newContact);
+  // const newContact= JSON.parse(localStorage.getItem("contacts") );
+  // if(newContact) setContacts(newContact);
+  
 },[]);
 
 useEffect(()=>{
@@ -38,7 +41,7 @@ useEffect(()=>{
     <div className="App">
     <h1>contact App</h1>
     <Routes>
-
+      <Route path='/user/:id' element={<DetaileUser/>} />
       <Route path='/add' element={ <AddContact  AddContactHandler={AddContactHandler}  /> } />
       <Route path='/' element={ <ContactList contacts={contacts} onDelete={onDelete}/>} />
      

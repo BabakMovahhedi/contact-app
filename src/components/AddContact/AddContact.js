@@ -1,17 +1,18 @@
 import { useState } from "react";
-
+import {useNavigate} from 'react-router-dom';
 import './AddContact.css';
 const AddContact = ({AddContactHandler}) => {
     const[contact,setContact]=useState({name:'', email:'' });
-    
     const changeHandler= (e)=>{
         setContact({...contact,[e.target.name]:e.target.value});
     };
+    const navigate= useNavigate();
 
     const submitform=(e)=>{
         e.preventDefault();
         AddContactHandler(contact);
-        setContact({name:'',email:''});  
+        setContact({name:'',email:''});
+       navigate('/');
         
     };
 

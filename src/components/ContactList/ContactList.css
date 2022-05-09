@@ -4,6 +4,29 @@
     align-items: center;
 
 }
+.listwraper{
+
+display: flex;
+justify-content: center;
+
+}
+.listHeader{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+}
+.contactlist button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    padding: 5px 10px;
+    background-color: #7c3aed;
+    color: #fff;
+    border-radius: 5px;
+}
 
 .item{
     background-color: #fff;
