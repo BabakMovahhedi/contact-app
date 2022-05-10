@@ -1,12 +1,24 @@
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom';
+import addcontact from "../../services/addcontactsservices";
+import getcontact from "../../services/getcontactservices";
 import './AddContact.css';
-const AddContact = ({AddContactHandler}) => {
+
+
+
+const AddContact = () => {
     const[contact,setContact]=useState({name:'', email:'' });
+    const navigate= useNavigate();
     const changeHandler= (e)=>{
         setContact({...contact,[e.target.name]:e.target.value});
     };
-    const navigate= useNavigate();
+
+
+    const AddContactHandler=(contact)=>{             
+        addcontact(contact)
+        .then((res)=>getcontact())        
+        .catch()
+    };
 
     const submitform=(e)=>{
         e.preventDefault();

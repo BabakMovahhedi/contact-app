@@ -1,7 +1,9 @@
 import { useState } from "react";
 import {useNavigate,useLocation,Link} from 'react-router-dom';
+import getcontact from "../../services/getcontactservices";
+import putcontact from "../../services/putContactServices";
 // import './AddContact.css';
-const EditContact = ({editContactHandler}) => {
+const EditContact = () => {
     const location=useLocation();
     const navigate= useNavigate();
     const[contact,setContact]=useState({name:location.state.name, email:location.state.email });
@@ -18,6 +20,12 @@ const EditContact = ({editContactHandler}) => {
        navigate('/');
         
     };
+
+    const editContactHandler=(contact,id)=>{
+        putcontact(id,contact)  
+        .then((res)=>getcontact())        
+        .catch()
+       };
 
     return ( 
         <form onSubmit={submitform}>
