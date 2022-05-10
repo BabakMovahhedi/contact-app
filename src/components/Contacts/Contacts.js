@@ -14,7 +14,7 @@ const Contacts = ({contact,onDelete}) => {
     </div>
     </Link>
     
-    <button onClick={()=> onDelete(id)}>delete</button>
+    <button onClick={()=> onDelete(id)}>delete</button>    
    </div> );
 }
  

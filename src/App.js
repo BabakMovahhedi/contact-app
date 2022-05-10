@@ -3,9 +3,12 @@ import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AddContact from './components/AddContact/AddContact';
 import ContactList from './components/ContactList/ContactList';
-
-import './App.css';
 import DetaileUser from './components/DetaileUser/DetaileUser';
+import getcontact from './services/getcontactservices';
+import deletecontact from './services/deletecontactsservices';
+import './App.css';
+import axios from 'axios';
+import addcontact from './services/addcontactsservices';
 
 
 function App() {
@@ -14,26 +17,36 @@ function App() {
   const onDelete=(id)=>{
     const filterContact=contacts.filter((c)=> c.id!== id );
     setContacts(filterContact);
+    deletecontact(id)
+    .then((res)=>getcontact())
+    .then((res)=>setContacts(res.data))
+    .catch()
   };
   const AddContactHandler=(contact)=>{
-  const newContact={
-    id:Math.random()*100,
-    name:contact.name,
-    email:contact.email
-  };
-  setContacts([...contacts,newContact]);
+    const newContact={
+      id:Math.random()*100,
+      name:contact.name,
+      email:contact.email
+    };
+    setContacts([...contacts,newContact]);
+    addcontact(contact)
+    .then((res)=>getcontact())
+    .then((res)=>setContacts(res.data))
+    .catch()
 };
 
 
 useEffect(()=>{
   // const newContact= JSON.parse(localStorage.getItem("contacts") );
   // if(newContact) setContacts(newContact);
-  
+  getcontact()
+  .then((res)=>setContacts(res.data) )
+  .catch()
 },[]);
 
-useEffect(()=>{
-  localStorage.setItem("contacts",JSON.stringify(contacts) );
-},[contacts]);
+// useEffect(()=>{
+//   localStorage.setItem("contacts",JSON.stringify(contacts) );
+// },[contacts]);
 
 
 
