@@ -12,7 +12,7 @@ const ContactList = ({contacts,onDelete}) => {
            <Link to='/add' >
            <button>Add</button>
            </Link>
-           </div>
+           </div  >
            {contacts.map((contact)=>{
                return(
                 <Contacts contact={contact} onDelete={onDelete} />

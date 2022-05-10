@@ -6,9 +6,10 @@ import ContactList from './components/ContactList/ContactList';
 import DetaileUser from './components/DetaileUser/DetaileUser';
 import getcontact from './services/getcontactservices';
 import deletecontact from './services/deletecontactsservices';
-import './App.css';
-import axios from 'axios';
+import EditContact from './components/EditContact/EditContact';
+import putcontact from './services/putContactServices';
 import addcontact from './services/addcontactsservices';
+import './App.css';
 
 
 function App() {
@@ -34,6 +35,12 @@ function App() {
     .then((res)=>setContacts(res.data))
     .catch()
 };
+ const editContactHandler=(contact,id)=>{
+  const data=putcontact(id,contact)  
+  .then((res)=>getcontact())
+  .then((res)=>setContacts(res.data))
+  .catch()
+ };
 
 
 useEffect(()=>{
@@ -54,9 +61,10 @@ useEffect(()=>{
     <div className="App">
     <h1>contact App</h1>
     <Routes>
-      <Route path='/user/:id' element={<DetaileUser/>} />
+      <Route path='/edit/:id' element={<EditContact editContactHandler={editContactHandler} />} />
       <Route path='/add' element={ <AddContact  AddContactHandler={AddContactHandler}  /> } />
       <Route path='/' element={ <ContactList contacts={contacts} onDelete={onDelete}/>} />
+      <Route path='/user/:id' element={<DetaileUser/>} />
      
     </Routes>
     {/* <AddContact    AddContactHandler={AddContactHandler} /> */}

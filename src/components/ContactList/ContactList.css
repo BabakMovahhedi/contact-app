@@ -49,5 +49,10 @@ justify-content: center;
     background-color: #ccc;
     padding: 5px 10px ;
     border-radius: 5px;
+    margin-left: 10px;
+}
+.item .editBtn{
+    color: #7c3aed;
+    border: 1px solid #a4a0ab;
 
 }
